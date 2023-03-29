@@ -6,7 +6,7 @@ import AddAddress from '../pages/AddAddress';
 
 const Router = createBrowserRouter([
   {
-    path: '/add-house',
+    path: '',
     element: <AddHouse />,
   },
   {

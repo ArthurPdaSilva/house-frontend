@@ -9,12 +9,15 @@ const AddAddress = () => {
   return (
     <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <MyHeaderComponent text="What is your address?" />
-        <MyFormComponent />
+        <MyHeaderComponent
+          srcImage="/assets/address.png"
+          text="What is your address?"
+        />
+        <MyFormComponent type="Address" />
         <MyMessageComponent
           text="Want to add a house?"
           linkText="Register house"
-          link="add-house"
+          link="/"
         />
       </Grid.Column>
     </Grid>
