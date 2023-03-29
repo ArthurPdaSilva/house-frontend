@@ -4,6 +4,7 @@ import MyButtonComponent from '../Button';
 import { type } from 'os';
 import FormHouse from '../FormHouse';
 import FormAddress from '../FormAddress';
+import MySelectComponent from '../Select';
 
 interface FormProps {
   type: 'House' | 'Address';
@@ -13,7 +14,13 @@ const MyFormComponent = (props: FormProps) => {
   return (
     <Form size="large">
       <Segment stacked>
-        {props.type == 'House' ? <FormHouse /> : <FormAddress />}
+        {props.type == 'House' ? (
+          <>
+            <FormHouse /> <MySelectComponent />
+          </>
+        ) : (
+          <FormAddress />
+        )}
         <MyButtonComponent />
       </Segment>
     </Form>
