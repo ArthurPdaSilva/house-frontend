@@ -27,7 +27,7 @@ const FormAddress = () => {
         />
         <Form.Input
           fluid
-          icon="numbered list"
+          icon="barcode"
           iconPosition="left"
           placeholder="Zip Code"
         />
