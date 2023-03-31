@@ -1,9 +1,8 @@
 import React from 'react';
 import { Form, Segment } from 'semantic-ui-react';
-import MyButtonComponent from '../Button';
-import FormHouse from '../FormHouse';
-import FormAddress from '../FormAddress';
-import MySelectComponent from '../Select';
+import { MyButtonComponent, MySelectComponent } from '..';
+import FormHouse from './FormHouse';
+import FormAddress from './FormAddress';
 
 interface FormProps {
   type: 'House' | 'Address';
