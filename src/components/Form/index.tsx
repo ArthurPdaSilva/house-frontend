@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Segment } from 'semantic-ui-react';
 import MyButtonComponent from '../Button';
-import { type } from 'os';
 import FormHouse from '../FormHouse';
 import FormAddress from '../FormAddress';
 import MySelectComponent from '../Select';

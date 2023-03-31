@@ -1,26 +1,25 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
-
-import MyHeaderComponent from '../../components/Header';
-import MyFormComponent from '../../components/Form';
-import MyMessageComponent from '../../components/Message';
+import AddLayoutTemplate from '../../templates/AddLayoutTemplate';
+import {
+  MyFormComponent,
+  MyHeaderComponent,
+  MyMessageComponent,
+} from '../../components';
 
 const AddHouse = () => {
   return (
-    <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <MyHeaderComponent
-          srcImage="/assets/house-big.png"
-          text="What's your house like?"
-        />
-        <MyFormComponent type="House" />
-        <MyMessageComponent
-          text="Is your address too specific?"
-          link="add-address"
-          linkText="Register address"
-        />
-      </Grid.Column>
-    </Grid>
+    <AddLayoutTemplate>
+      <MyHeaderComponent
+        srcImage="/assets/house-big.png"
+        text="What's your house like?"
+      />
+      <MyFormComponent type="House" />
+      <MyMessageComponent
+        text="Is your address too specific?"
+        link="add-address"
+        linkText="Register address"
+      />
+    </AddLayoutTemplate>
   );
 };
 
