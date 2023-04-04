@@ -1,6 +1,5 @@
 import React from 'react';
-import { Form, Segment } from 'semantic-ui-react';
-import { MyButtonComponent, MySelectComponent } from '..';
+import { Segment } from 'semantic-ui-react';
 import FormHouse from './FormHouse';
 import FormAddress from './FormAddress';
 
@@ -10,18 +9,17 @@ interface FormProps {
 
 const MyFormComponent = (props: FormProps) => {
   return (
-    <Form size="large">
+    <>
       <Segment stacked>
         {props.type == 'House' ? (
           <>
-            <FormHouse /> <MySelectComponent />
+            <FormHouse />
           </>
         ) : (
           <FormAddress />
         )}
-        <MyButtonComponent />
       </Segment>
-    </Form>
+    </>
   );
 };
 
