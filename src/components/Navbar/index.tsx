@@ -16,7 +16,7 @@ const MyNavBarComponent = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ fontSize: '1.2rem' }}>
         <button
           className="navbar-toggler"
           type="button"
@@ -45,24 +45,23 @@ const MyNavBarComponent = () => {
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
-                href="#"
+                to="/"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                onMouseEnter={handleMenuHouse}
-                onMouseOut={handleMenuHouse}
+                onClick={handleMenuHouse}
               >
                 House
-              </a>
+              </Link>
               <div
                 className={
                   activeMenuHouse ? 'dropdown-menu show' : 'dropdown-menu'
                 }
               >
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="/list-houses">
                   See registered houses
                 </a>
                 <a className="dropdown-item" href="#">
@@ -74,18 +73,17 @@ const MyNavBarComponent = () => {
               </div>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
-                href="#"
+                to="add-address"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                onMouseEnter={handleMenuAddress}
-                onMouseOut={handleMenuAddress}
+                onClick={handleMenuAddress}
               >
                 Address
-              </a>
+              </Link>
               <div
                 className={
                   activeMenuAddress ? 'dropdown-menu show' : 'dropdown-menu'

@@ -4,6 +4,7 @@ import MyHeaderComponent from './Header';
 import MySelectComponent from './Select';
 import MyButtonComponent from './Button';
 import MyNavBarComponent from './Navbar';
+import MyCardHouse from './CardHouse';
 
 export {
   MyFormComponent,
@@ -12,4 +13,5 @@ export {
   MyHeaderComponent,
   MySelectComponent,
   MyButtonComponent,
+  MyCardHouse,
 };
