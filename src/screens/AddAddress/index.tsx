@@ -1,25 +1,25 @@
 import React from 'react';
-import AddLayoutTemplate from '../../templates/AddLayoutTemplate';
+import FormLayoutTemplate from '../../templates/FormLayoutTemplate';
 import {
-  MyFormComponent,
+  MyFormAddress,
   MyHeaderComponent,
   MyMessageComponent,
 } from '../../components';
 
 const AddAddress = () => {
   return (
-    <AddLayoutTemplate>
+    <FormLayoutTemplate>
       <MyHeaderComponent
         srcImage="/assets/address.png"
         text="What is your address?"
       />
-      <MyFormComponent type="Address" />
+      <MyFormAddress />
       <MyMessageComponent
         text="Want to add a house?"
         linkText="Register house"
         link="/"
       />
-    </AddLayoutTemplate>
+    </FormLayoutTemplate>
   );
 };
 

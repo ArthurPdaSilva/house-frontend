@@ -1,17 +1,21 @@
-import MyFormComponent from './Form';
 import MyMessageComponent from './Message';
 import MyHeaderComponent from './Header';
 import MySelectComponent from './Select';
-import MyButtonComponent from './Button';
 import MyNavBarComponent from './Navbar';
 import MyCardHouse from './CardHouse';
+import MyCardAddress from './CardAddress';
+import MyFormHouse from './FormHouse';
+import MyFormAddress from './FormAddress';
+import MyChangingHouse from './ChangingHouse';
 
 export {
-  MyFormComponent,
+  MyFormHouse,
+  MyFormAddress,
+  MyChangingHouse,
   MyNavBarComponent,
   MyMessageComponent,
   MyHeaderComponent,
   MySelectComponent,
-  MyButtonComponent,
   MyCardHouse,
+  MyCardAddress,
 };

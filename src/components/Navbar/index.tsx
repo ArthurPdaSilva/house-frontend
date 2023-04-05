@@ -6,13 +6,21 @@ const MyNavBarComponent = () => {
   const [activeMenuHouse, setActiveMenuHouse] = useState<boolean>(false);
   const [activeMenuAddress, setActiveMenuAddress] = useState<boolean>(false);
 
-  const handleMenuHouse = useCallback(() => {
-    setActiveMenuHouse(!activeMenuHouse);
-  }, [activeMenuHouse, setActiveMenuHouse]);
+  const handleMenuHouse = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      e.preventDefault();
+      setActiveMenuHouse(!activeMenuHouse);
+    },
+    [activeMenuHouse, setActiveMenuHouse],
+  );
 
-  const handleMenuAddress = useCallback(() => {
-    setActiveMenuAddress(!activeMenuAddress);
-  }, [activeMenuAddress, setActiveMenuAddress]);
+  const handleMenuAddress = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+      e.preventDefault();
+      setActiveMenuAddress(!activeMenuAddress);
+    },
+    [activeMenuAddress, setActiveMenuAddress],
+  );
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -48,7 +56,7 @@ const MyNavBarComponent = () => {
               <Link
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
-                to="/"
+                to="#"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -61,14 +69,11 @@ const MyNavBarComponent = () => {
                   activeMenuHouse ? 'dropdown-menu show' : 'dropdown-menu'
                 }
               >
+                <a className="dropdown-item" href="/">
+                  Create house
+                </a>
                 <a className="dropdown-item" href="/list-houses">
                   See registered houses
-                </a>
-                <a className="dropdown-item" href="#">
-                  Delete my house
-                </a>
-                <a className="dropdown-item" href="#">
-                  Edit my house
                 </a>
               </div>
             </li>
@@ -76,7 +81,7 @@ const MyNavBarComponent = () => {
               <Link
                 className="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
-                to="add-address"
+                to="*"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -89,14 +94,11 @@ const MyNavBarComponent = () => {
                   activeMenuAddress ? 'dropdown-menu show' : 'dropdown-menu'
                 }
               >
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="/add-address">
+                  Create address
+                </a>
+                <a className="dropdown-item" href="/list-address">
                   See registered addresses
-                </a>
-                <a className="dropdown-item" href="#">
-                  Delete my address
-                </a>
-                <a className="dropdown-item" href="#">
-                  Edit my address
                 </a>
               </div>
             </li>

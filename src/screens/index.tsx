@@ -1,5 +1,8 @@
 import AddHouse from './AddHouse';
-import AddAddress from './AddAddress';
 import ListHouses from './ListHouses';
+import ChangeHouse from './ChangeHouse';
 
-export { AddHouse, AddAddress, ListHouses };
+import AddAddress from './AddAddress';
+import ListAddress from './ListAddress';
+
+export { AddHouse, AddAddress, ListHouses, ListAddress, ChangeHouse };
