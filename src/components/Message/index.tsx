@@ -1,5 +1,6 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 interface MessageProps {
   text: string;
@@ -10,7 +11,7 @@ interface MessageProps {
 const MyMessageComponent = (props: MessageProps) => {
   return (
     <Message>
-      {props.text} <a href={props.link}>{props.linkText}</a>
+      {props.text} <Link to={props.link}>{props.linkText}</Link>
     </Message>
   );
 };

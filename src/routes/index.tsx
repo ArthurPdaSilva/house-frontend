@@ -1,18 +1,12 @@
 import React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { Routes as ContainerRoutes, Route } from 'react-router-dom';
+import { AddHouse, AddAddress } from '../screens/';
 
-import AddHouse from '../pages/AddHouse';
-import AddAddress from '../pages/AddAddress';
-
-const Router = createBrowserRouter([
-  {
-    path: '',
-    element: <AddHouse />,
-  },
-  {
-    path: '/add-address',
-    element: <AddAddress />,
-  },
-]);
-
-export default Router;
+export default function Routes() {
+  return (
+    <ContainerRoutes>
+      <Route index element={<AddHouse />} />
+      <Route path="/add-address" element={<AddAddress />} />
+    </ContainerRoutes>
+  );
+}
