@@ -7,6 +7,7 @@ import {
   ListAddress,
   ChangeHouse,
 } from '../screens/';
+import ChangeAddress from '../screens/ChangeAddress';
 
 export default function Routes() {
   return (
@@ -16,6 +17,7 @@ export default function Routes() {
       <Route path="/change-house/:id" element={<ChangeHouse />} />
       <Route path="/add-address" element={<AddAddress />} />
       <Route path="/list-address" element={<ListAddress />} />
+      <Route path="/change-address/:id" element={<ChangeAddress />} />
     </ContainerRoutes>
   );
 }
