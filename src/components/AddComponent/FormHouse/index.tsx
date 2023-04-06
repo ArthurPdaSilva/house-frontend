@@ -53,7 +53,7 @@ const MyFormHouse = () => {
           fluid
           icon="address card"
           iconPosition="left"
-          placeholder="addressId"
+          placeholder=" Address ID"
           onChange={(e) => setAddressId(e.target.value)}
           value={addressId}
         />
