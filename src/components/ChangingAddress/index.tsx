@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
+import api from '../../services/api';
+import MyChangingProps from '../../Types/Change';
 
-interface MyChangingHouseProps {
-  id: string;
-  number: string;
-}
+const MyChangingAddress = (props: MyChangingProps) => {
+  const [number, setNumber] = useState<string>('');
 
-const MyChangingAddress = (props: MyChangingHouseProps) => {
-  const [number, setNumber] = useState<string>(props.number);
+  useEffect(() => {
+    async function loadingAddress() {
+      const response = await api.get(`/address/${props.id}`);
+      setNumber(response.data.number);
+    }
+
+    loadingAddress();
+  }, [setNumber]);
 
   return (
     <Segment stacked>

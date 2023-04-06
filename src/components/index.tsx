@@ -1,6 +1,5 @@
 import MyMessageComponent from './Message';
 import MyHeaderComponent from './Header';
-import MySelectComponent from './Select';
 import MyNavBarComponent from './Navbar';
 import MyCardHouse from './CardHouse';
 import MyCardAddress from './CardAddress';
@@ -15,7 +14,6 @@ export {
   MyNavBarComponent,
   MyMessageComponent,
   MyHeaderComponent,
-  MySelectComponent,
   MyCardHouse,
   MyCardAddress,
 };

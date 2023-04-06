@@ -1,16 +1,46 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { MySelectComponent } from '../index';
+import { useNavigate } from 'react-router-dom';
+import api from '../../services/api';
+import HouseType from '../../Types/HouseType';
 
 const MyFormHouse = () => {
+  const navigate = useNavigate();
+
   const [owner, setOwner] = useState<string>('');
   const [color, setColor] = useState<string>('');
+  const [addressId, setAddressId] = useState<string>('');
   const [height, setHeight] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
 
+  const handleRegisterHouse = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      const house: HouseType = {
+        owner,
+        color,
+        addressId,
+        height,
+        width,
+      };
+
+      await api
+        .post('/house', house)
+        .then(() => {
+          alert('successful registration house');
+          navigate('/list-houses');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    [owner, color, addressId, height, width],
+  );
+
   return (
     <Segment stacked>
-      <Form>
+      <Form onSubmit={handleRegisterHouse}>
         <Form.Input
           fluid
           icon="user"
@@ -18,6 +48,14 @@ const MyFormHouse = () => {
           placeholder="Owner"
           onChange={(e) => setOwner(e.target.value)}
           value={owner}
+        />
+        <Form.Input
+          fluid
+          icon="address card"
+          iconPosition="left"
+          placeholder="addressId"
+          onChange={(e) => setAddressId(e.target.value)}
+          value={addressId}
         />
         <Form.Input
           fluid
@@ -49,7 +87,6 @@ const MyFormHouse = () => {
           />
         </Form.Group>
 
-        <MySelectComponent />
         <Button color="orange" fluid size="large">
           Confirm
         </Button>

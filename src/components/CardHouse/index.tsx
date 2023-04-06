@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import HouseType from '../../Types/HouseType';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface MyCardHouseProps {
   house: HouseType;

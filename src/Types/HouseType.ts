@@ -1,8 +1,8 @@
 export default interface HouseType {
-  id: string;
+  id?: string;
   owner: string;
   color: string;
-  height: string;
-  width: string;
+  height: number;
+  width: number;
   addressId: string;
 }

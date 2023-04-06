@@ -1,5 +1,5 @@
 export default interface AddressType {
-  id: string;
+  id?: string;
   code: string;
   street: string;
   number: string;

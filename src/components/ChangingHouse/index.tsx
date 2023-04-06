@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
+import api from '../../services/api';
+import MyChangingProps from '../../Types/Change';
 
-interface MyChangingHouseProps {
-  id: string;
-  owner: string;
-}
+const MyChangingHouse = (props: MyChangingProps) => {
+  const [owner, setOwner] = useState<string>('');
 
-const MyChangingHouse = (props: MyChangingHouseProps) => {
-  const [owner, setOwner] = useState<string>(props.owner);
+  useEffect(() => {
+    async function loadingHouse() {
+      const response = await api.get(`/house/${props.id}`);
+      setOwner(response.data.owner);
+    }
+
+    loadingHouse();
+  }, [setOwner]);
 
   return (
     <Segment stacked>

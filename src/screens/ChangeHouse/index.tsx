@@ -8,7 +8,7 @@ const ChangeHouse = () => {
 
   return (
     <FormLayoutTemplate>
-      <MyChangingHouse id={id as string} owner={'Owner'} />
+      <MyChangingHouse id={id as string} />
     </FormLayoutTemplate>
   );
 };

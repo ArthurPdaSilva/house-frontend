@@ -8,7 +8,7 @@ const ChangeAddress = () => {
 
   return (
     <FormLayoutTemplate>
-      <MyChangingAddress id={id as string} number={'32C'} />
+      <MyChangingAddress id={id as string} />
     </FormLayoutTemplate>
   );
 };

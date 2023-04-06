@@ -23,7 +23,7 @@ const MyNavBarComponent = () => {
   );
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid" style={{ fontSize: '1.2rem' }}>
         <button
           className="navbar-toggler"

@@ -1,16 +1,46 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
+import AddressType from '../../Types/AddressType';
+import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const MyFormAddress = () => {
+  const navigate = useNavigate();
+
   const [street, setStreet] = useState<string>('');
   const [number, setNumber] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [country, setCountry] = useState<string>('');
   const [code, setCode] = useState<string>('');
 
+  const handleRegisterAddress = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      const address: AddressType = {
+        street,
+        number,
+        code,
+        city,
+        country,
+      };
+
+      await api
+        .post('/address', address)
+        .then(() => {
+          alert('successful registration address');
+          navigate('/list-address');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    [street, number, code, city, country],
+  );
+
   return (
     <Segment stacked>
-      <Form>
+      <Form onSubmit={handleRegisterAddress}>
         <Form.Input
           fluid
           icon="street view"
