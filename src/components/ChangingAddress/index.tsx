@@ -4,6 +4,7 @@ import api from '../../services/api';
 import MyChangingProps from '../../Types/Change';
 import AddressType from '../../Types/AddressType';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const MyChangingAddress = (props: MyChangingProps) => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const MyChangingAddress = (props: MyChangingProps) => {
     await api
       .delete(`/address/${props.id}`)
       .then(() => {
-        alert('Address deleted successfully');
+        toast.success('Address deleted successfully');
         navigate('/list-address');
       })
       .catch((error) => {
@@ -39,7 +40,7 @@ const MyChangingAddress = (props: MyChangingProps) => {
     await api
       .put(`/address/${props.id}`, { number, country, city, code, street })
       .then(() => {
-        alert('Address edited successfully');
+        toast.success('Address edited successfully');
         navigate('/list-address');
       })
       .catch((error) => {

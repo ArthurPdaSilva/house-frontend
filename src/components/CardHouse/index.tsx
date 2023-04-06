@@ -22,6 +22,7 @@ const MyCardHouse = ({ house }: MyCardHouseProps) => {
           <span style={{ color: house.color }}>Color: {house.color}</span>
         </Card.Description>
         <Card.Description>ID: {house.id}</Card.Description>
+        <Card.Description>ID Address: {house.addressId}</Card.Description>
       </Card.Content>
       <Card.Content extra style={{ gap: 20, display: 'flex' }}>
         <a>

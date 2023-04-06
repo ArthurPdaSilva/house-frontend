@@ -3,6 +3,7 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../../services/api';
 import HouseType from '../../../Types/HouseType';
+import { toast } from 'react-toastify';
 
 const MyFormHouse = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const MyFormHouse = () => {
       await api
         .post('/house', house)
         .then(() => {
-          alert('successful registration house');
+          toast.success('successful registration house');
           navigate('/list-houses');
         })
         .catch((error) => {

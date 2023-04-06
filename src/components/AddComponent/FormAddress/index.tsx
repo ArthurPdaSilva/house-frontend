@@ -3,6 +3,7 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import AddressType from '../../../Types/AddressType';
 import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const MyFormAddress = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const MyFormAddress = () => {
       await api
         .post('/address', address)
         .then(() => {
-          alert('successful registration address');
+          toast.success('successful registration address');
           navigate('/list-address');
         })
         .catch((error) => {
