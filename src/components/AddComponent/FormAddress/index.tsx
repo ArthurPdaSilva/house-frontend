@@ -49,6 +49,8 @@ const MyFormAddress = () => {
           placeholder="Street"
           onChange={(e) => setStreet(e.target.value)}
           value={street}
+          minLength="2"
+          required
         />
         <Form.Input
           fluid
@@ -57,6 +59,8 @@ const MyFormAddress = () => {
           placeholder="Number"
           onChange={(e) => setNumber(e.target.value)}
           value={number}
+          minLength="2"
+          required
         />
         <Form.Input
           fluid
@@ -65,6 +69,8 @@ const MyFormAddress = () => {
           placeholder="City"
           onChange={(e) => setCity(e.target.value)}
           value={city}
+          minLength="2"
+          required
         />
 
         <Form.Group widths="equal">
@@ -75,6 +81,8 @@ const MyFormAddress = () => {
             placeholder="Country"
             onChange={(e) => setCountry(e.target.value)}
             value={country}
+            minLength="2"
+            required
           />
           <Form.Input
             fluid
@@ -83,6 +91,9 @@ const MyFormAddress = () => {
             placeholder="Zip Code"
             onChange={(e) => setCode(e.target.value)}
             value={code}
+            minLength="8"
+            maxLength="8"
+            required
           />
         </Form.Group>
 

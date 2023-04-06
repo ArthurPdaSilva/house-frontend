@@ -49,6 +49,8 @@ const MyFormHouse = () => {
           placeholder="Owner"
           onChange={(e) => setOwner(e.target.value)}
           value={owner}
+          minLength="4"
+          required
         />
         <Form.Input
           fluid
@@ -57,6 +59,7 @@ const MyFormHouse = () => {
           placeholder=" Address ID"
           onChange={(e) => setAddressId(e.target.value)}
           value={addressId}
+          required
         />
         <Form.Input
           fluid
@@ -65,6 +68,7 @@ const MyFormHouse = () => {
           placeholder="Color"
           onChange={(e) => setColor(e.target.value)}
           value={color}
+          required
         />
 
         <Form.Group widths="equal">
