@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import HouseType from '../../Types/HouseType';
+import { redirect, useNavigate } from 'react-router-dom';
 
-const MyCardHouse = () => (
-  <Card style={{ cursor: 'pointer' }}>
-    <Image src="/assets/house-card.png" />
-    <Card.Content>
-      <Card.Header>Matthew</Card.Header>
-      <Card.Description>House Color: Red</Card.Description>
-      <Card.Description>ID: 12436214321321</Card.Description>
-    </Card.Content>
-    <Card.Content extra style={{ gap: 20, display: 'flex' }}>
-      <a>
-        <Icon name="expand arrows alternate" />
-        Width: 250
-      </a>
-      <a>
-        <Icon name="expand arrows alternate" />
-        Height: 250
-      </a>
-    </Card.Content>
-  </Card>
-);
+interface MyCardHouseProps {
+  house: HouseType;
+}
+
+const MyCardHouse = ({ house }: MyCardHouseProps) => {
+  const navigate = useNavigate();
+
+  return (
+    <Card
+      style={{ cursor: 'pointer' }}
+      onClick={() => navigate(`/change-house/${house.id}`)}
+    >
+      <Image src="/assets/house-card.png" />
+      <Card.Content>
+        <Card.Header>{house.owner}</Card.Header>
+        <Card.Description>
+          <span style={{ color: house.color }}>Color: {house.color}</span>
+        </Card.Description>
+        <Card.Description>ID: {house.id}</Card.Description>
+      </Card.Content>
+      <Card.Content extra style={{ gap: 20, display: 'flex' }}>
+        <a>
+          <Icon name="expand arrows alternate" />
+          Width: {house.width}
+        </a>
+        <a>
+          <Icon name="expand arrows alternate" />
+          Height: {house.height}
+        </a>
+      </Card.Content>
+    </Card>
+  );
+};
 
 export default MyCardHouse;
