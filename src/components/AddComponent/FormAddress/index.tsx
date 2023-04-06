@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
-import AddressType from '../../Types/AddressType';
-import api from '../../services/api';
+import AddressType from '../../../Types/AddressType';
+import api from '../../../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const MyFormAddress = () => {

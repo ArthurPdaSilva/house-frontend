@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
-import HouseType from '../../Types/HouseType';
+import api from '../../../services/api';
+import HouseType from '../../../Types/HouseType';
 
 const MyFormHouse = () => {
   const navigate = useNavigate();
