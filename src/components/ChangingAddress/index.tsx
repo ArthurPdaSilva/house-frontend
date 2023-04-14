@@ -44,7 +44,7 @@ const MyChangingAddress = (props: MyChangingProps) => {
         navigate('/list-address');
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       });
   }, [number, address, props.id]);
 

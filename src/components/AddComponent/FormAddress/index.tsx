@@ -33,7 +33,7 @@ const MyFormAddress = () => {
           navigate('/list-address');
         })
         .catch((error) => {
-          console.log(error);
+          toast.error(error);
         });
     },
     [street, number, code, city, country],

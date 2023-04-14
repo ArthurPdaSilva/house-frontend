@@ -4,18 +4,23 @@ import ListLayoutTemplate from '../../templates/ListLayoutTemplate';
 import { Grid } from 'semantic-ui-react';
 import api from '../../services/api';
 import HouseType from '../../Types/HouseType';
+import { toast } from 'react-toastify';
 
 const ListHouses = () => {
   const [houses, setHouses] = useState<HouseType[]>([]);
 
   useEffect(() => {
     async function loadingAllHouses() {
-      const response = await api.get('/house');
-      setHouses(response.data);
+      await api
+        .get('/house')
+        .then((value) => {
+          setHouses(value.data);
+        })
+        .catch((error) => toast.error(error));
     }
 
     loadingAllHouses();
-  }, [setHouses]);
+  }, []);
 
   return (
     <ListLayoutTemplate>

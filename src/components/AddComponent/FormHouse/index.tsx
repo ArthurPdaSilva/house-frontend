@@ -33,7 +33,7 @@ const MyFormHouse = () => {
           navigate('/list-houses');
         })
         .catch((error) => {
-          console.log(error);
+          toast.error(error);
         });
     },
     [owner, color, addressId, height, width],

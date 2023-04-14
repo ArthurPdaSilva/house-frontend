@@ -45,7 +45,7 @@ const MyChangingHouse = (props: MyChangingProps) => {
         navigate('/list-houses');
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       });
   }, [house, owner, props.id]);
 
