@@ -6,8 +6,8 @@ import {
   ListHouses,
   ListAddress,
   ChangeHouse,
-} from '../screens/';
-import ChangeAddress from '../screens/ChangeAddress';
+  ChangeAddress,
+} from '../pages/';
 
 export default function Routes() {
   return (
