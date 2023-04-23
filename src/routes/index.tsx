@@ -7,17 +7,64 @@ import {
   ListAddress,
   ChangeHouse,
   ChangeAddress,
+  Login,
+  Register,
 } from '../pages/';
+import PrivateRouter from './privateRoute';
 
 export default function Routes() {
   return (
     <ContainerRoutes>
-      <Route index element={<AddHouse />} />
-      <Route path="/list-houses" element={<ListHouses />} />
-      <Route path="/change-house/:id" element={<ChangeHouse />} />
-      <Route path="/add-address" element={<AddAddress />} />
-      <Route path="/list-address" element={<ListAddress />} />
-      <Route path="/change-address/:id" element={<ChangeAddress />} />
+      <Route index element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="/add-house"
+        element={
+          <PrivateRouter>
+            <AddHouse />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path="/list-houses"
+        element={
+          <PrivateRouter>
+            <ListHouses />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path="/change-house/:id"
+        element={
+          <PrivateRouter>
+            <ChangeHouse />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path="/add-address"
+        element={
+          <PrivateRouter>
+            <AddAddress />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path="/list-address"
+        element={
+          <PrivateRouter>
+            <ListAddress />
+          </PrivateRouter>
+        }
+      />
+      <Route
+        path="/change-address/:id"
+        element={
+          <PrivateRouter>
+            <ChangeAddress />
+          </PrivateRouter>
+        }
+      />
     </ContainerRoutes>
   );
 }

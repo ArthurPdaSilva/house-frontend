@@ -47,7 +47,7 @@ const MyNavBarComponent = () => {
         >
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link active" to="/">
+              <Link className="nav-link active" to="/add-house">
                 House App
                 <span className="visually-hidden">(current)</span>
               </Link>
