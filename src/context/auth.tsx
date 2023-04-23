@@ -3,7 +3,7 @@ import UserType from '../Types/UserType';
 import { toast } from 'react-toastify';
 import api from '../services/api';
 
-interface AppContextInterface {
+interface AuthContextInterface {
   signed: boolean;
   user: UserType | null;
   logout: () => void;
@@ -11,7 +11,9 @@ interface AppContextInterface {
   signIn: ({ username, password }: UserType) => void;
 }
 
-export const AuthContext = createContext<AppContextInterface | null>(null);
+export const AuthContext = createContext<AuthContextInterface>(
+  {} as AuthContextInterface,
+);
 
 export default function AuthProvider({ children }: { children: JSX.Element }) {
   const [user, setUser] = useState<UserType | null>(null);
@@ -20,12 +22,16 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
   useEffect(() => {
     const isUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    if (isUser) setUser(JSON.parse(isUser));
+    console.log(isUser);
+    if (isUser) {
+      console.log('passou aq');
+      setUser(JSON.parse(isUser));
+    }
     if (token) {
       setToken(JSON.parse(token));
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
-  }, [setUser, setToken]);
+  }, []);
 
   const signUp = useCallback(
     async ({ name, username, email, password }: UserType) => {
@@ -48,12 +54,12 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
   const signIn = useCallback(
     async ({ username, password }: UserType) => {
       await api
-        .post('/api/login', { username, password })
+        .post('/api/login', { username: username, password: password })
         .then((value) => {
           toast.success('Entrando na plataforma');
           setUser({ username, password });
-          setToken(value.data);
-          localStorage.setItem('token', value.data);
+          setToken(value.data.toString());
+          localStorage.setItem('token', JSON.stringify(value.data));
           storageUser({ username, password });
         })
         .catch((error) => {
@@ -93,7 +99,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
   return (
     <AuthContext.Provider
       value={{
-        signed: !!user,
+        signed: user?.username != '',
         user,
         logout,
         signIn,

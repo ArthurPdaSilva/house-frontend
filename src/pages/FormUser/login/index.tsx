@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import {
   Button,
   Form,
@@ -7,11 +7,25 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { signIn } = useAuth();
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
+
+  const handleLogin = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      signIn({ username, password });
+      setUsername('');
+      setPassword('');
+      navigate('/add-house');
+    },
+    [username, password, setUsername, setPassword],
+  );
 
   return (
     <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
@@ -19,7 +33,7 @@ const Login = () => {
         <Header as="h1" color="orange" textAlign="center">
           Log-in to your account
         </Header>
-        <Form size="large">
+        <Form size="large" onSubmit={handleLogin}>
           <Segment stacked>
             <Form.Input
               fluid
@@ -28,6 +42,7 @@ const Login = () => {
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
             <Form.Input
               fluid
@@ -37,9 +52,10 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
-            <Button color="orange" fluid size="large">
+            <Button color="orange" fluid size="large" type="submit">
               Login
             </Button>
           </Segment>

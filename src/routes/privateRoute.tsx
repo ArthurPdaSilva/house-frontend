@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../context/auth';
 import { MyNavBarComponent } from '../components';
+import useAuth from '../hooks/useAuth';
 
 export default function PrivateRouter({ children }: { children: JSX.Element }) {
-  const appContext = useContext(AuthContext);
-  return appContext?.signed ? (
+  const { signed } = useAuth();
+  console.log(signed);
+  return signed ? (
     <>
       <MyNavBarComponent />
       {children}

@@ -69,7 +69,7 @@ const MyNavBarComponent = () => {
                   activeMenuHouse ? 'dropdown-menu show' : 'dropdown-menu'
                 }
               >
-                <a className="dropdown-item" href="/">
+                <a className="dropdown-item" href="/add-house">
                   Create house
                 </a>
                 <a className="dropdown-item" href="/list-houses">
