@@ -11,8 +11,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
-  const navigate = useNavigate();
   const { signIn } = useAuth();
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
 

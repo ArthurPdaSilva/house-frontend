@@ -2,10 +2,11 @@ import React, { createContext, useState, useCallback, useEffect } from 'react';
 import UserType from '../Types/UserType';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import TokenType from '../Types/TokenType';
 
 interface AuthContextInterface {
-  signed: boolean;
   user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
   logout: () => void;
   signUp: ({ name, username, email, password }: UserType) => void;
   signIn: ({ username, password }: UserType) => void;
@@ -17,21 +18,17 @@ export const AuthContext = createContext<AuthContextInterface>(
 
 export default function AuthProvider({ children }: { children: JSX.Element }) {
   const [user, setUser] = useState<UserType | null>(null);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState<TokenType>({ value: '' });
 
   useEffect(() => {
-    const isUser = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    console.log(isUser);
-    if (isUser) {
-      console.log('passou aq');
-      setUser(JSON.parse(isUser));
+    const isToken = localStorage.getItem('token');
+    if (isToken) {
+      const newToken = token;
+      newToken.value = JSON.parse(isToken);
+      setToken(newToken);
+      api.defaults.headers.common['Authorization'] = `Bearer ${newToken.value}`;
     }
-    if (token) {
-      setToken(JSON.parse(token));
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    }
-  }, []);
+  }, [token, setToken]);
 
   const signUp = useCallback(
     async ({ name, username, email, password }: UserType) => {
@@ -58,8 +55,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
         .then((value) => {
           toast.success('Entrando na plataforma');
           setUser({ username, password });
-          setToken(value.data.toString());
-          localStorage.setItem('token', JSON.stringify(value.data));
+          localStorage.setItem('token', JSON.stringify({ value: value.data }));
           storageUser({ username, password });
         })
         .catch((error) => {
@@ -87,7 +83,7 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
       .then(() => {
         toast.success('Saindo da plataforma');
         setUser(null);
-        setToken('');
+        setToken({ value: '' });
         localStorage.removeItem('user');
         localStorage.removeItem('token');
       })
@@ -99,8 +95,8 @@ export default function AuthProvider({ children }: { children: JSX.Element }) {
   return (
     <AuthContext.Provider
       value={{
-        signed: user?.username != '',
         user,
+        setUser,
         logout,
         signIn,
         signUp,

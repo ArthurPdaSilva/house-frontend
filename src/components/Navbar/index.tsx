@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const MyNavBarComponent = () => {
+  const { logout } = useAuth();
   const [activeMenu, setActiveMenu] = useState<boolean>(false);
   const [activeMenuHouse, setActiveMenuHouse] = useState<boolean>(false);
   const [activeMenuAddress, setActiveMenuAddress] = useState<boolean>(false);
@@ -111,6 +113,15 @@ const MyNavBarComponent = () => {
               >
                 About me
               </a>
+            </li>
+            <li>
+              <button
+                className="nav-link"
+                style={{ background: 'transparent', border: 0 }}
+                onClick={() => logout()}
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>

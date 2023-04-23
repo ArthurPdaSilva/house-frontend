@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import {
   Button,
   Form,
@@ -7,13 +7,26 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [name, setName] = useState<string>();
+
+  const handleRegister = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      signUp({ name, username, email, password });
+      navigate('/add-house');
+    },
+    [name, email, username, password],
+  );
 
   return (
     <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
@@ -21,7 +34,7 @@ const Register = () => {
         <Header as="h1" color="orange" textAlign="center">
           Register
         </Header>
-        <Form size="large">
+        <Form size="large" onSubmit={handleRegister}>
           <Segment stacked>
             <Form.Input
               fluid
