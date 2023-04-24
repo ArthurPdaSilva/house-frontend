@@ -23,9 +23,13 @@ const Register = () => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       signUp({ name, username, email, password });
+      setUsername('');
+      setPassword('');
+      setName('');
+      setEmail('');
       navigate('/add-house');
     },
-    [name, email, username, password],
+    [username, password, setUsername, setPassword],
   );
 
   return (

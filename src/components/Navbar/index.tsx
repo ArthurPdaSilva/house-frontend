@@ -1,12 +1,19 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const MyNavBarComponent = () => {
-  const { logout } = useAuth();
+  const { logout, token } = useAuth();
+  const navigate = useNavigate();
+
   const [activeMenu, setActiveMenu] = useState<boolean>(false);
   const [activeMenuHouse, setActiveMenuHouse] = useState<boolean>(false);
   const [activeMenuAddress, setActiveMenuAddress] = useState<boolean>(false);
+
+  const handleLogout = () => {
+    navigate('/');
+    logout();
+  };
 
   const handleMenuHouse = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -114,15 +121,17 @@ const MyNavBarComponent = () => {
                 About me
               </a>
             </li>
-            <li>
-              <button
-                className="nav-link"
-                style={{ background: 'transparent', border: 0 }}
-                onClick={() => logout()}
-              >
-                Logout
-              </button>
-            </li>
+            {token && (
+              <li className="nav-item">
+                <button
+                  className="nav-link"
+                  onClick={handleLogout}
+                  style={{ border: 0, background: 'transparent' }}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

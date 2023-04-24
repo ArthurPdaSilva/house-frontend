@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes as ContainerRoutes, Route } from 'react-router-dom';
+import { Routes as ContainerRoutes, Route, Navigate } from 'react-router-dom';
 import {
   AddHouse,
   AddAddress,
@@ -10,60 +10,41 @@ import {
   Login,
   Register,
 } from '../pages/';
-import PrivateRouter from './privateRoute';
+import useAuth from '../hooks/useAuth';
 
 export default function Routes() {
+  const { token } = useAuth();
+
   return (
     <ContainerRoutes>
-      <Route index element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route index element={token ? <Navigate to="/add-house" /> : <Login />} />
+      <Route
+        path="/register"
+        element={token ? <Navigate to="/add-house" /> : <Register />}
+      />
       <Route
         path="/add-house"
-        element={
-          <PrivateRouter>
-            <AddHouse />
-          </PrivateRouter>
-        }
+        element={token ? <AddHouse /> : <Navigate to="/" />}
       />
       <Route
         path="/list-houses"
-        element={
-          <PrivateRouter>
-            <ListHouses />
-          </PrivateRouter>
-        }
+        element={token ? <ListHouses /> : <Navigate to="/" />}
       />
       <Route
         path="/change-house/:id"
-        element={
-          <PrivateRouter>
-            <ChangeHouse />
-          </PrivateRouter>
-        }
+        element={token ? <ChangeHouse /> : <Navigate to="/" />}
       />
       <Route
         path="/add-address"
-        element={
-          <PrivateRouter>
-            <AddAddress />
-          </PrivateRouter>
-        }
+        element={token ? <AddAddress /> : <Navigate to="/" />}
       />
       <Route
         path="/list-address"
-        element={
-          <PrivateRouter>
-            <ListAddress />
-          </PrivateRouter>
-        }
+        element={token ? <ListAddress /> : <Navigate to="/" />}
       />
       <Route
         path="/change-address/:id"
-        element={
-          <PrivateRouter>
-            <ChangeAddress />
-          </PrivateRouter>
-        }
+        element={token ? <ChangeAddress /> : <Navigate to="/" />}
       />
     </ContainerRoutes>
   );
